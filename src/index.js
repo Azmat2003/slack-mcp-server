@@ -16,6 +16,14 @@ registerSendMessageTool(server);
 registerSetStatusTool(server);
 registerClearStatusTool(server);
 
-const transport = new StdioServerTransport();
+async function main(){
+  try{
+    const transport = new StdioServerTransport(); 
+    await server.connect(transport);
+  }
+  catch(err){
+    console.error(err.message);
+  }
+}
 
-await server.connect(transport);
+main();
