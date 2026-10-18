@@ -54,9 +54,36 @@ npm install
 ### 2. Configure Slack
 
 1. Create a Slack app at [api.slack.com/apps](https://api.slack.com/apps).
-2. Under **OAuth & Permissions**, add the bot scopes required by the tools you plan to use (for example, `chat:write` for sending messages).
-3. Install or reinstall the app to your workspace and copy its **Bot User OAuth Token** (`xoxb-...`).
-4. Create a `.env` file in the project root:
+2. Navigate to **OAuth & Permissions** and add the required OAuth scopes.
+
+   **Bot Token Scopes:**
+   - `chat:write` – Send messages to channels.
+   - `chat:write.public` – Send messages to public channels without joining.
+   - `channels:read` – List public channels.
+   - `channels:history` – Read public channel messages.
+   - `groups:read` – List private channels the bot belongs to.
+   - `groups:history` – Read messages in private channels the bot belongs to.
+   - `users:read` – Retrieve workspace user information.
+   - `im:read` – Access DM conversation information.
+   - `im:history` – Read DM history where permitted.
+   - `mpim:read` – Access group DM information.
+   - `mpim:history` – Read group DM history where permitted.
+
+   **User Token Scopes:**
+   - Add the corresponding scopes required for operations performed on behalf of a Slack user, such as `channels:read`, `channels:history`, `groups:read`, and `groups:history`.
+
+3. Install or reinstall the app to your Slack workspace.
+4. Copy the **Bot User OAuth Token** (`xoxb-...`) and **User OAuth Token** (`xoxp-...`) from the OAuth & Permissions page.
+5. Create a `.env` file in the project root:
+
+   ```env
+   SLACK_BOT_TOKEN=xoxb-your-bot-token
+   SLACK_USER_TOKEN=xoxp-your-user-token
+   ```
+
+6. Ensure the app has access to the channels it needs to interact with.
+
+**Note:** Grant only the scopes required by your implemented tools. Reinstall the Slack app whenever OAuth permissions are updated. Never commit your `.env` file or OAuth tokens to GitHub.
 
 ```env
 SLACK_BOT_TOKEN=xoxb-your-bot-token
@@ -75,7 +102,9 @@ Open **Claude Desktop → Settings → Developer → Edit Config** and add the s
       "command": "node",
       "args": ["/ABSOLUTE/PATH/TO/slack-mcp-server/src/index.js"],
       "env": {
-        "SLACK_BOT_TOKEN": "xoxb-your-bot-token"
+        "SLACK_BOT_TOKEN": "xoxb-your-bot-token",
+        "SLACK_USER_TOKEN": "xoxp-your-user-token",
+        
       }
     }
   }
