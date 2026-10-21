@@ -1,5 +1,7 @@
 # Slack MCP Server
 
+[![M8ven Score](https://m8ven.ai/badge/mcp/azmat2003/slack-mcp-server)](https://m8ven.ai/mcp/azmat2003/slack-mcp-server?s=readme)
+
 A lightweight **Model Context Protocol (MCP)** server that connects AI assistants such as **Claude Desktop** to a Slack workspace. It exposes Slack operations as callable tools, allowing an assistant to interact with Slack through natural-language requests.
 
 ## Tech Stack
