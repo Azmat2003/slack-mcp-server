@@ -6,11 +6,19 @@ export function registerSetStatusTool(server) {
     "set_slack_status",
     {
       description: "Update my Slack status with text, emoji and duration",
+
       inputSchema: {
         text: z.string().min(1),
         emoji: z.string().default(":speech_balloon:"),
         duration: z.number().int().positive().optional()
           .describe("Duration in minutes"),
+      },
+
+      annotations: {
+        readOnlyHint: false,
+        destructiveHint: true,
+        idempotentHint: true,
+        openWorldHint: true,
       },
     },
     async ({ text, emoji, duration }) => {

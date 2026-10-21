@@ -6,9 +6,17 @@ export function registerSendMessageTool(server) {
     "send_slack_message",
     {
       description: "Send a message to a Slack channel",
+
       inputSchema: {
         channelId: z.string().describe("Slack channel ID"),
         message: z.string().min(1).describe("Message to send"),
+      },
+
+      annotations: {
+        readOnlyHint: false,
+        destructiveHint: false,
+        idempotentHint: false,
+        openWorldHint: true,
       },
     },
     async ({ channelId, message }) => {

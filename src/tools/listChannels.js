@@ -5,6 +5,15 @@ export function registerListChannelsTool(server) {
     "list_slack_channels",
     {
       description: "List public Slack channels",
+
+      inputSchema: {},
+
+      annotations: {
+        readOnlyHint: true,
+        destructiveHint: false,
+        idempotentHint: true,
+        openWorldHint: true,
+      },
     },
     async () => {
       try {

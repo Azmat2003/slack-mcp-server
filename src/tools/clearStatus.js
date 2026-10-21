@@ -5,6 +5,15 @@ export function registerClearStatusTool(server) {
     "clear_slack_status",
     {
       description: "Clear my current Slack status",
+
+      inputSchema: {},
+
+      annotations: {
+        readOnlyHint: false,
+        destructiveHint: true,
+        idempotentHint: true,
+        openWorldHint: true,
+      },
     },
     async () => {
       try {
